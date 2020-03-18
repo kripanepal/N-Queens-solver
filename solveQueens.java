@@ -30,7 +30,7 @@ public class solveQueens {
    					
    					board[row][j] = true;
 
-   					if(row == 3)
+   					if(row == board.length-1)
    					    {
    						solved = true;
    					    }else
