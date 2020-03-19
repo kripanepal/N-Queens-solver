@@ -9,59 +9,55 @@ public class solveQueens {
     public solveQueens(int num)
     {
 	board = new boolean[num][num];
-	solve(num,0);
+   solve(num,0);
+   
+  
+   
+	if(solved)
+   {
+      System.out.println("solved");
+   }
+   
+   else
+   {
+      System.out.println("can't solve");
+   }
 	
 	
     }
     
-    public void solve(int n, int row){
-
-	
-   	if(row < n)
-   	    {
-
-   		for(int j = 0; j < n; j++)
-   		    {
-   			if(!solved)
-   			    {
-
-   				if(check(row, j))
-   				    {
-   					
-   					board[row][j] = true;
-
-   					if(row == board.length-1)
-   					    {
-   						solved = true;
-   					    }else
-   					    {
-   						solve(n, row + 1);
-   					    }
-
-   				    }
-   				
-   				if(!solved)
-   				    {
-
-   					board[row][j] = false;
-   				    }
-
-   			    }
-
-   		    }
-
-   	    }
-
-       }
-
+    public boolean solve(int n, int row){
+    
+    if (row == n) 
+	{ 
+      solved = true;
+		showBoard();
+      System.out.println("=================");
+      return true; 
+	} 
+   
+	boolean res = false; 
+	for (int i = 0; i < n; i++) 
+	{ 
+		if ( check(row, i) ) 
+		{ 
+			board[row][i] = true; 
+			res = solve(n, row+1) ; 
+			 board[row][i] = false;
+		}
+      
+   } 
+      return res; 
+	} 
        public  boolean check(int row, int col){
-
+      
+       
+        
    	for(int i = 0; i < row; i++)
    	    {
    		for(int j = 0; j < board[0].length; j++)
    		    {
-   			
-
+   		
    			if(board[i][j])
    			    {
 
